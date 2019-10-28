@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Car:</strong>
+  <%= @part.car %>
+</p>
+
+<p>
+  <strong>Vin number:</strong>
+  <%= @part.vin_number %>
+</p>
+
+<p>
+  <strong>Car part:</strong>
+  <%= @part.car_part %>
+</p>
+
+<%= link_to 'Edit', edit_part_path(@part) %> |
+<%= link_to 'Back', parts_path %>
