@@ -3,6 +3,12 @@ require 'test_helper'
 class CarsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @car = cars(:one)
+    @update = {
+        model:          'car model',
+        vin_number:     '123456789',
+        car_part:       'car part',
+        make_id:        '987654321'
+    }
   end
 
   test "should get index" do
@@ -17,7 +23,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create car" do
     assert_difference('Car.count') do
-      post cars_url, params: { car: { car_part: @car.car_part, make_id: @car.make_id, model: @car.model, vin_number: @car.vin_number } }
+      post cars_url, params: { car: @update}
     end
 
     assert_redirected_to car_url(Car.last)
@@ -34,7 +40,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update car" do
-    patch car_url(@car), params: { car: { car_part: @car.car_part, make_id: @car.make_id, model: @car.model, vin_number: @car.vin_number } }
+    patch car_url(@car), params: { car: @update }
     assert_redirected_to car_url(@car)
   end
 

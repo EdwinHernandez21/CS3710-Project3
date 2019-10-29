@@ -3,6 +3,10 @@ require 'test_helper'
 class MakesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @make = makes(:one)
+    @update = {
+        name:       'Edwins Car Name',
+        country:    'United States'
+    }
   end
 
   test "should get index" do
@@ -17,7 +21,7 @@ class MakesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create make" do
     assert_difference('Make.count') do
-      post makes_url, params: { make: { country: @make.country, name: @make.name } }
+      post makes_url, params: { make: @update }
     end
 
     assert_redirected_to make_url(Make.last)
@@ -34,7 +38,7 @@ class MakesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update make" do
-    patch make_url(@make), params: { make: { country: @make.country, name: @make.name } }
+    patch make_url(@make), params: { make: @update }
     assert_redirected_to make_url(@make)
   end
 

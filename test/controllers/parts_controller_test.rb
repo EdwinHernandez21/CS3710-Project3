@@ -3,6 +3,11 @@ require 'test_helper'
 class PartsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @part = parts(:one)
+    @update = {
+        car:                'car name',
+        vin_number:         '123456789',
+        car_part:           'example car part'
+    }
   end
 
   test "should get index" do
@@ -17,7 +22,7 @@ class PartsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create part" do
     assert_difference('Part.count') do
-      post parts_url, params: { part: { car: @part.car, car_part: @part.car_part, vin_number: @part.vin_number } }
+      post parts_url, params: { part: @update }
     end
 
     assert_redirected_to part_url(Part.last)
@@ -34,7 +39,7 @@ class PartsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update part" do
-    patch part_url(@part), params: { part: { car: @part.car, car_part: @part.car_part, vin_number: @part.vin_number } }
+    patch part_url(@part), params: { part: @update }
     assert_redirected_to part_url(@part)
   end
 
