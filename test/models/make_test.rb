@@ -1,7 +1,8 @@
-require 'test_helper'
+# frozen_string_literal: true
 
-class MakeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+test 'make attributes must not be empty' do
+  make = make.new
+  assert make.invalid?
+  assert make.errors[:name].any?
+  assert make.errors[:country].any?
 end
